@@ -23,7 +23,7 @@ class DatabaseSeeder extends Seeder
         Project::factory()->create();
 
         Task::factory(5)->create([
-            'user_id' => $user->id
+            'user_id' => $user->id,
         ]);
     }
 }

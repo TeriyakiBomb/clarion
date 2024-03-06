@@ -9,15 +9,18 @@ class Task extends Model
 {
     use HasFactory;
 
-    public function project(){
+    public function project()
+    {
         return $this->belongsTo(Project::class);
     }
 
-    public function tags(){
+    public function tags()
+    {
         return $this->hasMany(Tag::class);
     }
 
-    public function creator(){
+    public function creator()
+    {
         return $this->belongsTo(User::class, 'user_id');
 
     }

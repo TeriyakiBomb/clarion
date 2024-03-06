@@ -21,9 +21,9 @@ class TaskFactory extends Factory
         return [
             'user_id' => User::factory(),
             'project_id' => Project::factory(),
-            'name' => $this->faker->realTextBetween(10,40),
+            'name' => $this->faker->realTextBetween(10, 40),
             'description' => $this->faker->sentence,
-            'completed_on' => null
+            'completed_on' => null,
         ];
     }
 }
