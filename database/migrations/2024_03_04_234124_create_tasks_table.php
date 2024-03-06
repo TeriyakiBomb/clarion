@@ -15,10 +15,11 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->foreignId('user_id');
+            $table->foreignId('project_id');
             $table->string('name');
             $table->longText('description');
             $table->boolean('completed')->default(false);
-            $table->dateTime('completed_on');
+            $table->dateTime('completed_on')->nullable();
         });
     }
 
