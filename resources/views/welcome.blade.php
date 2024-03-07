@@ -24,6 +24,7 @@
                  <div class="text-left pr-10">
                      <h1 class="font-bold">
                           {{ $task->name }}
+                          PREOR{{ $task->priority->name }}
                       </h1>
                       {{$task->project->name}}
                       <br>

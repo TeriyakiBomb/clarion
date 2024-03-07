@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Task extends Model
 {
@@ -22,9 +21,9 @@ class Task extends Model
         return $this->belongsToMany(Tag::class, 'task_tag');
     }
 
-    public function priority(): HasOne
+    public function priority(): BelongsTo
     {
-        return $this->hasOne(Priority::class);
+        return $this->belongsTo(Priority::class);
     }
 
     public function creator(): BelongsTo
