@@ -2,7 +2,9 @@
 
 namespace Database\Factories;
 
+use App\Models\Priority;
 use App\Models\Project;
+use App\Models\Status;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -21,8 +23,12 @@ class TaskFactory extends Factory
         return [
             'user_id' => User::factory(),
             'project_id' => Project::factory(),
-            'name' => $this->faker->realTextBetween(10, 40),
-            'description' => $this->faker->sentence,
+            'name' => fake()->realTextBetween(10, 40),
+            'description' => fake()->sentence,
+            'start_date' => fake()->dateTime,
+            'due_date' => fake()->dateTime,
+            'status_id' => Status::factory(),
+            'priority_id' => Priority::factory(),
             'completed_on' => null,
         ];
     }

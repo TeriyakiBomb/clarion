@@ -2,7 +2,10 @@
 
 namespace Database\Seeders;
 
+use App\Models\Priority;
 use App\Models\Project;
+use App\Models\Status;
+use App\Models\Tag;
 use App\Models\Task;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -25,5 +28,9 @@ class DatabaseSeeder extends Seeder
         Task::factory(5)->create([
             'user_id' => $user->id,
         ]);
+
+        Status::factory()->create();
+        Tag::factory()->create();
+        Priority::factory()->create();
     }
 }

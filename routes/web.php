@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Task;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,7 +14,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::view('/', 'welcome');
+Route::get('/', function (Task $task) {
+    return view('welcome', [
+        'tasks' => $task::all(),
+    ]);
+});
 
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])

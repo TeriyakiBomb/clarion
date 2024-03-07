@@ -17,7 +17,8 @@ class PriorityFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'name' => fake()->word(),
+            'order' => fake()->randomNumber(),
         ];
     }
 }
