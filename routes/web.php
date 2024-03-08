@@ -17,18 +17,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function (Project $project, Task $task) {
-    return view('welcome', [
-        'projects' => $project::all(),
-        'tasks' => $task::all(),
-    ]);
+Route::group(['middleware' => 'auth'], function () {
+
+    Route::get('/', function (Project $project, Task $task) {
+        return view('app', [
+            'projects' => $project::all(),
+            'tasks' => $task::all(),
+        ]);
+    })->name('app');
+
+    Route::get('/projects', [ProjectController::class, 'index'])->name('projects');
+    Route::get('/project/{id}', [ProjectController::class, 'show']);
+
+    Route::get('/tags', [TagController::class, 'index'])->name('tags');
+    Route::get('/tag/{id}', [TagController::class, 'show']);
 });
-
-Route::get('/projects', [ProjectController::class, 'index']);
-Route::get('/project/{id}', [ProjectController::class, 'show']);
-
-Route::get('/tags', [TagController::class, 'index']);
-Route::get('/tag/{id}', [TagController::class, 'show']);
 
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
