@@ -26,6 +26,11 @@ class Task extends Model
         return $this->belongsTo(Priority::class);
     }
 
+    public function status(): BelongsTo
+    {
+        return $this->belongsTo(Status::class);
+    }
+
     public function creator(): BelongsTo
     {
         return $this->belongsTo(User::class);
