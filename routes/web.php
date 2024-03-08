@@ -28,6 +28,7 @@ Route::get('/projects', [ProjectController::class, 'index']);
 Route::get('/project/{id}', [ProjectController::class, 'show']);
 
 Route::get('/tags', [TagController::class, 'index']);
+Route::get('/tag/{id}', [TagController::class, 'show']);
 
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
