@@ -21,7 +21,6 @@ Route::group(['middleware' => 'auth', 'verified'], function () {
     Route::get('/tags', [TagController::class, 'index'])->name('tags');
     Route::get('/tag/{id}', [TagController::class, 'show']);
 
-    Route::view('dashboard', 'dashboard')->name('dashboard');
     Route::view('profile', 'profile')->name('profile');
 });
 
