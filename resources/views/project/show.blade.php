@@ -1,6 +1,3 @@
-{{dump($project)}}
-
-
 <h1>{{$project->name}}</h1>
 
 @forelse($project->tasks as $task)

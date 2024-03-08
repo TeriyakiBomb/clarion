@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\TagController;
 use App\Models\Project;
 use App\Models\Task;
 use Illuminate\Support\Facades\Route;
@@ -23,10 +24,10 @@ Route::get('/', function (Project $project, Task $task) {
     ]);
 });
 
-Route::get(
-    '/project/{id}',
-    [ProjectController::class, 'show']
-);
+Route::get('/projects', [ProjectController::class, 'index']);
+Route::get('/project/{id}', [ProjectController::class, 'show']);
+
+Route::get('/tags', [TagController::class, 'index']);
 
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
