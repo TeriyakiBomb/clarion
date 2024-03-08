@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\ProjectController;
+use App\Models\Project;
 use App\Models\Task;
 use Illuminate\Support\Facades\Route;
 
@@ -14,11 +16,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function (Task $task) {
+Route::get('/', function (Project $project, Task $task) {
     return view('welcome', [
+        'projects' => $project::all(),
         'tasks' => $task::all(),
     ]);
 });
+
+Route::get(
+    '/project/{id}',
+    [ProjectController::class, 'show']
+);
 
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
