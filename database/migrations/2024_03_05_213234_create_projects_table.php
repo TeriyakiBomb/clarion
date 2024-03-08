@@ -16,6 +16,8 @@ return new class extends Migration
             $table->timestamps();
             $table->string('name');
             $table->text('description');
+            $table->boolean('active')->default(true);
+            $table->boolean('archived')->default(false);
         });
     }
 
