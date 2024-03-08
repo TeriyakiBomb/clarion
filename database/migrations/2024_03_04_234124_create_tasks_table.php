@@ -24,6 +24,7 @@ return new class extends Migration
             $table->foreignId('priority_id');
             $table->boolean('completed')->default(false);
             $table->dateTime('completed_on')->nullable();
+            $table->boolean('archived')->default(false);
         });
     }
 
