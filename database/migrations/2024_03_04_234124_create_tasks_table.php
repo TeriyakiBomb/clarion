@@ -18,10 +18,10 @@ return new class extends Migration
             $table->foreignId('project_id');
             $table->string('name');
             $table->longText('description');
-            $table->dateTime('start_date');
-            $table->dateTime('due_date');
-            $table->foreignId('status_id');
-            $table->foreignId('priority_id');
+            $table->dateTime('start_date')->nullable();
+            $table->dateTime('due_date')->nullable();
+            $table->foreignId('status_id')->nullable();
+            $table->foreignId('priority_id')->nullable();
             $table->boolean('completed')->default(false);
             $table->dateTime('completed_on')->nullable();
             $table->boolean('archived')->default(false);
