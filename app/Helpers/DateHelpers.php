@@ -3,7 +3,7 @@
 use Carbon\Carbon;
 
 if (! function_exists('dueDateStatus')) {
-    function dueDateStatus($date)
+    function dueDateStatus($date): string
     {
         $parsedDate = Carbon::parse($date);
         $currentDate = Carbon::today();
@@ -22,28 +22,28 @@ if (! function_exists('dueDateStatus')) {
 }
 
 if (! function_exists('dueToday')) {
-    function dueToday($date)
+    function dueToday($date): bool
     {
         return Carbon::parse($date)->isToday();
     }
 }
 
 if (! function_exists('dueTomorrow')) {
-    function dueTomorrow($date)
+    function dueTomorrow($date): bool
     {
         return Carbon::parse($date)->isTomorrow();
     }
 }
 
 if (! function_exists('dueThisWeek')) {
-    function dueThisWeek($date)
+    function dueThisWeek($date): bool
     {
         return Carbon::parse($date)->isCurrentWeek() && Carbon::parse($date)->isAfter(Carbon::today());
     }
 }
 
 if (! function_exists('formatDate')) {
-    function formatDate($date, $format)
+    function formatDate($date, $format): string
     {
         return Carbon::parse($date)->format($format);
     }
