@@ -1,19 +1,13 @@
 <?php
 
+use App\Http\Controllers\AppController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\TagController;
-use App\Models\Project;
-use App\Models\Task;
 use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => 'auth', 'verified'], function () {
 
-    Route::get('/', function (Project $project, Task $task) {
-        return view('app', [
-            'projects' => $project::all(),
-            'tasks' => $task::all(),
-        ]);
-    })->name('app');
+    Route::get('/', [AppController::class, 'index'])->name('app');
 
     Route::get('/projects', [ProjectController::class, 'index'])->name('projects');
     Route::get('/project/{id}', [ProjectController::class, 'show']);
