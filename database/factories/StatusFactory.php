@@ -18,6 +18,7 @@ class StatusFactory extends Factory
     {
         return [
             'name' => fake()->word(),
+            //Does this status represent the completion state
             'completion_status' => 0,
         ];
     }
