@@ -2,7 +2,7 @@
 
 use Carbon\Carbon;
 
-if (! function_exists('dueDateStatus')) {
+if (!function_exists('dueDateStatus')) {
     function dueDateStatus($date): string
     {
         $parsedDate = Carbon::parse($date);
@@ -12,7 +12,7 @@ if (! function_exists('dueDateStatus')) {
         } elseif ($parsedDate->isTomorrow()) {
             return 'Due tomorrow';
         } elseif ($parsedDate->isCurrentWeek() && $parsedDate->isAfter($currentDate)) {
-            return 'Due'.$parsedDate->format('l');
+            return 'Due' . $parsedDate->format('l');
         } elseif ($parsedDate->lessThan($currentDate)) {
             return 'overdue';
         } else {
@@ -21,28 +21,28 @@ if (! function_exists('dueDateStatus')) {
     }
 }
 
-if (! function_exists('dueToday')) {
+if (!function_exists('dueToday')) {
     function dueToday($date): bool
     {
         return Carbon::parse($date)->isToday();
     }
 }
 
-if (! function_exists('dueTomorrow')) {
+if (!function_exists('dueTomorrow')) {
     function dueTomorrow($date): bool
     {
         return Carbon::parse($date)->isTomorrow();
     }
 }
 
-if (! function_exists('dueThisWeek')) {
+if (!function_exists('dueThisWeek')) {
     function dueThisWeek($date): bool
     {
         return Carbon::parse($date)->isCurrentWeek() && Carbon::parse($date)->isAfter(Carbon::today());
     }
 }
 
-if (! function_exists('formatDate')) {
+if (!function_exists('formatDate')) {
     function formatDate($date, $format): string
     {
         return Carbon::parse($date)->format($format);
