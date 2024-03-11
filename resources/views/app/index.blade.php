@@ -9,9 +9,7 @@
          <div class="flex flex-row">
             <div class="w-10 mr-10">
                 <h1 class="font-bold pb-3">Projects</h1>
-                @foreach($projects as $project)
-                    <a class="cursor-pointer" href="/project/{{$project->id}}" wire:navigate>{{$project->name}}</a>
-                @endforeach
+                <livewire:projects.show/>
             </div>
             <div class="sm:px-6 lg:px-8">
                 <livewire:task.create/>

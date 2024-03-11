@@ -1,15 +1,34 @@
-<div>
-    <form wire:submit.prevent="saveTask">
-        <input type="text" wire:model="name">
-        @error('name') <span class="error">{{ $message }}</span> @enderror
+<div x-data="{create: false}">
 
-        <button type="submit">Create</button>
-    </form>
+    <div @click="create = true">
+        + Create task
+    </div>
+
+    <div class="" x-show="create">
+        <form wire:submit.prevent="saveTask">
+            <input type="text" wire:model="name">
+            @error('name') <span class="error">{{ $message }}</span> @enderror
+            <input type="date" wire:model="due_date">
+            <div class="form-group">
+                <label for="project">Project</label>
+                <select id="project" wire:model="project_id" class="form-control">
+                    <option>Select a project</option>
+                    @foreach($projects as $project)
+                        <option value="{{ $project->id }}">{{ $project->name }}</option>
+                    @endforeach
+                </select>
+                @error('project_id') <span class="error">{{ $message }}</span> @enderror
+            </div>
+
+            <button type="submit">Create</button>
+        </form>
+    </div>
     @if (session()->has('message'))
 
 
     @endif
 
+    {{-- Need to throw this into a generic notification component at some point--}}
     <div x-data="{ open: false, timer: null }">
         <div @task-created.window="
             open = true;
