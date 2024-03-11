@@ -1,6 +1,6 @@
-<div x-data="{create: false}">
+<div x-data="{create: false}" @keyup.shift.c.window="create = true">
 
-    <div @click="create = true">
+    <div @click="create = true" >
         + Create task
     </div>
 
