@@ -4,8 +4,8 @@
         + Create task
     </div>
 
-    <div class="" x-show="create">
-        <form wire:submit.prevent="createTask">
+    <div class="" x-show="create" x-trap="create"  @click.outside="create = false">
+        <form wire:submit.prevent="createTask" @cmd.enter="create = true" @keyup.enter="create = false">
             <input type="text" wire:model="name">
             @error('name') <span class="error">{{ $message }}</span> @enderror
             <input type="date" wire:model="due_date">
@@ -20,7 +20,7 @@
                 @error('project_id') <span class="error">{{ $message }}</span> @enderror
             </div>
 
-            <button type="submit">Create</button>
+
         </form>
     </div>
     @if (session()->has('message'))
