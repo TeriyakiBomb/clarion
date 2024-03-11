@@ -11,10 +11,22 @@ class Show extends Component
     public $tasks;
 
     #[On('task-created', 'fetchTasks')]
+    #[On('task-completed', 'fetchTasks')]
 
     function fetchTasks(): void
     {
-        $this->tasks = Task::with('tags', 'project')->latest()->get();
+        $this->tasks = Task::with('tags', 'project')->where('completed', false)->latest()->get();
+    }
+
+    public function markComplete($taskId): void
+    {
+        $task = Task::find($taskId);
+        $task->update([
+            'completed' => true,
+        ]);
+
+        $this->dispatch('task-completed', ['task' => $taskId]);
+        //$this->dispatch('task-created');
     }
 
     function mount(): void

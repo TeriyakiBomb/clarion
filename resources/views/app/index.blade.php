@@ -5,14 +5,14 @@
          </h2>
      </x-slot>
 
-    <div class="py-12 mx-auto container">
+    <div class="py-12 mx-auto container" >
          <div class="flex flex-row">
             <div class="w-10 mr-10">
                 <h1 class="font-bold pb-3">Projects</h1>
                 <livewire:projects.show/>
             </div>
             <div class="sm:px-6 lg:px-8">
-                <livewire:task.create/>
+                <livewire:task.create lazy/>
                 <livewire:tasks.show/>
 
 

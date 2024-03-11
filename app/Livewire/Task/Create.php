@@ -9,7 +9,7 @@ use Livewire\Component;
 class Create extends Component
 {
     public $name = '';
-    public $due_date = '';
+    public $due_date = null;
     public $project_id = null;
 
     public function updated($propertyName): void
@@ -46,7 +46,7 @@ class Create extends Component
         $this->name = '';
         $this->project_id = '';
         $this->dispatch('task-created');
-        session()->flash('message', 'Task successfully created.');
+        //session()->flash('message', 'Task successfully created.');
     }
 
     public function render()
