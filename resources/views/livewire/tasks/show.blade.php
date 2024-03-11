@@ -9,7 +9,9 @@
                     {{ $task->creator->name }}
                     <h1 class="font-bold"> Priority </h1>
 
-                    @if(dueDateStatus($task->due_date) == 'overdue')
+                    {{ optional($task->project)->name ?? '' }}
+
+                @if(dueDateStatus($task->due_date) == 'overdue')
                         <span class="text-red-500"> {{formatDate($task->due_date, 'd M Y')}}</span>
 
                     @else

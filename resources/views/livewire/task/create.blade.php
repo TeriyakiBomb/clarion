@@ -5,7 +5,7 @@
     </div>
 
     <div class="" x-show="create">
-        <form wire:submit.prevent="saveTask">
+        <form wire:submit.prevent="createTask">
             <input type="text" wire:model="name">
             @error('name') <span class="error">{{ $message }}</span> @enderror
             <input type="date" wire:model="due_date">

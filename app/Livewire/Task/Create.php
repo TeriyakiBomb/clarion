@@ -10,39 +10,43 @@ class Create extends Component
 {
     public $name = '';
     public $due_date = '';
-    public $project_id = '';
+    public $project_id = null;
 
     public function updated($propertyName): void
     {
         $this->validateOnly($propertyName, [
             'name' => 'required|max:255',
-            'project_id' => 'required|exists:projects,id', // ENSURE PROJECT EXISTS
         ]);
     }
 
-    public function saveTask(): void
+    public function createTask(): void
     {
-        $validatedData = $this->validate([
+        $rules = [
             'name' => 'required|max:255',
-            'project_id' => 'required|exists:projects,id', // VALIDATION RULES FOR PROJECT
-        ]);
+        ];
+
+        if ($this->project_id) {
+            $rules['project_id'] = 'exists:projects,id';
+        }
+
+        $validatedData = $this->validate($rules);
 
         $userId = auth()->id();
 
-        $validatedData['user_id'] = $userId;
-        $validatedData['due_date'] = $this->due_date;
+        $additionalData = [
+            'user_id' => $userId,
+            'due_date' => $this->due_date
+        ];
 
-        Task::create($validatedData);
+        $data = array_merge($validatedData, $additionalData);
 
-        //reset the form
+        Task::create($data);
 
+        //reset
         $this->name = '';
         $this->project_id = '';
-
         $this->dispatch('task-created');
-
         session()->flash('message', 'Task successfully created.');
-
     }
 
     public function render()

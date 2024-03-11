@@ -14,7 +14,7 @@ class Show extends Component
 
     function fetchTasks(): void
     {
-        $this->tasks = Task::with('tags')->latest()->get();
+        $this->tasks = Task::with('tags', 'project')->latest()->get();
     }
 
     function mount(): void
