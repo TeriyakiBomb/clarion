@@ -15,9 +15,9 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->foreignId('user_id');
-            $table->foreignId('project_id');
+            $table->foreignId('project_id')->nullable();
             $table->string('name');
-            $table->longText('description');
+            $table->longText('description')->nullable();
             $table->dateTime('start_date')->nullable();
             $table->dateTime('due_date')->nullable();
             $table->foreignId('status_id')->nullable();
